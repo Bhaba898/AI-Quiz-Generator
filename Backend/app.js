@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
@@ -13,8 +15,6 @@ import { roomJoinHandler, questionAttemptHandler, quizSubmissionHandler } from '
 import { SocketMiddleware } from './src/middlewares/Socket.middleware.js';
 import { redis } from './src/config/redis.js';
 import {} from "./src/jobs/Worker.js"
-import dotenv from 'dotenv';
-dotenv.config();
 const app = express();
 
 const server = http.createServer(app);
@@ -25,7 +25,10 @@ const io = new Server(server, {
   },
 });
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+    origin: process.env.CLIENT_URL, 
+    credentials: true,
+  }));
 app.use(morgan('combined',{
     stream : { write : (message) => logger.info(message.trim())}
 }));
