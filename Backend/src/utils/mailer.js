@@ -4,10 +4,12 @@ import mailer from 'nodemailer';
 
 const transport = mailer.createTransport({
     
-    service:"gmail",
+    host:"smtp-relay.brevo.com",
+    port:587,
+    secure:false,
     auth :{
-        user : process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD
+        user : process.env.BREVO_SMTP_USER,
+        pass: process.env.BREVO_SMTP_PASS
     }
 })
 
@@ -17,7 +19,7 @@ export const sendMail = async (to,subject,body) => {
     from: process.env.GMAIL_USER,
     to,
     subject,
-    html: body  // or `text:` for plain text
+    html: body 
 });
 }
 
