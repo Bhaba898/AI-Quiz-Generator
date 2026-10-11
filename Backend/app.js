@@ -13,6 +13,8 @@ import { roomJoinHandler, questionAttemptHandler, quizSubmissionHandler } from '
 import { SocketMiddleware } from './src/middlewares/Socket.middleware.js';
 import { redis } from './src/config/redis.js';
 import {} from "./src/jobs/Worker.js"
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
 
 const server = http.createServer(app);

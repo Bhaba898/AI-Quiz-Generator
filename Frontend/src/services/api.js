@@ -3,6 +3,7 @@ import { setCredentials, clearCredentials } from "../store/authSlice.js";
 import Store from "../store/index.js";
 
 const BASE_URL = import.meta.env.VITE_SERVER_URL;
+console.log(BASE_URL);
 const api = axios.create({
   baseURL: BASE_URL,
   withCredentials: true, // For cookie support (refreshToken)
@@ -20,7 +21,10 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) =>{
+    console.log(error)
+ Promise.reject(error)
+  }
 );
 
 // Share one refresh call between all requests that fail with 401 at the same time
