@@ -16,10 +16,12 @@ import {} from "./src/jobs/Worker.js"
 const app = express();
 
 const server = http.createServer(app);
-const io = new Server(server,{
-    cors:{origin : "*"}
-})
-
+const io = new Server(server, {
+  cors: {
+    origin: process.env.CLIENT_URL, 
+    credentials: true,
+  },
+});
 app.use(helmet());
 app.use(cors());
 app.use(morgan('combined',{

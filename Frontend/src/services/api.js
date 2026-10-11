@@ -3,7 +3,6 @@ import { setCredentials, clearCredentials } from "../store/authSlice.js";
 import Store from "../store/index.js";
 
 const BASE_URL = import.meta.env.VITE_SERVER_URL;
-
 const api = axios.create({
   baseURL: BASE_URL,
   withCredentials: true, // For cookie support (refreshToken)
